@@ -1,4 +1,4 @@
-nclude <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -9,7 +9,7 @@ nclude <stdio.h>
 
 /*all entries in file*/
 char entries[NUM_ENTRIES][LINE_LENGTH];
-int max_substring[LINE_LENGTH];
+int max_substring[NUM_ENTRIES];
 
 void read_file();
 void get_substring_num(int id);
@@ -60,8 +60,8 @@ void substring_num(int id){
 		strcpy(str2, entries[i+1]);
 		
 		for(j = 0; j < LINE_LENGTH; j++){
-			str1_total += Integer.parseInt(str1[j]);
-			str2_total += Integer.parseInt(str2[j]);
+			str1_total += (int)str1[j];
+			str2_total += (int)str2[j];
 		}
 		
 		final_total = str1_total-str2_total;
