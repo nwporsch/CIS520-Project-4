@@ -42,7 +42,7 @@ void read_file(){
 	fclose(fp);
 	
 }
-
+void substring_num(int id){
 	int startPos = myID * (NUM_ENTRIES / NUM_THREADS);
 	int endPos = startPos + (NUM_ENTRIES / NUM_THREADS);
 	
@@ -54,7 +54,7 @@ void read_file(){
 	int i, j;
 	int final_total;
 	
-	for i = startPos; i < endPos; i++){
+	for( i = startPos; i < endPos; i++){
 		strcpy(str1, entries[i]);
 		strcpy(str2, entries[i+1]);
 		
