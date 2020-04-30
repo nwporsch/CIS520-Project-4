@@ -20,6 +20,7 @@ void main(){
 	for(i=0;i<NUM_THREADS; i++){
 		get_substring_num(i);
 	}
+	print_results();
 }
 
 void read_file(){
@@ -70,3 +71,11 @@ void substring_num(int id){
 	}
 }
 
+void print_results(){
+	int i,j, total = 0;
+	for ( i = 0; i < NUM_ENTRIES; i++ ) {
+		total += max_substring[i];
+		printf(" %d - %d %d\n", i, i+1, max_substring[i]);
+	}
+	printf("\nTotal characters:  %d\n", total);
+}
