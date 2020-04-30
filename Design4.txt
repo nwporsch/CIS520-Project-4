@@ -1,0 +1,11 @@
+CIS 520
+Kansas State University
+Project 4 Beocat Parallel Processing
+
+Design Document
+
+GROUP
+
+Nickalas Porsch
+Aidan Javier
+Caleb Logan
