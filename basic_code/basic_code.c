@@ -42,3 +42,30 @@ void read_file(){
 	fclose(fp);
 	
 }
+
+	int startPos = myID * (NUM_ENTRIES / NUM_THREADS);
+	int endPos = startPos + (NUM_ENTRIES / NUM_THREADS);
+	
+	char str1[LINE_LENGTH];
+	char str2[LINE_LENGTH];
+	
+	int str1_total, str2_total;
+	
+	int i, j;
+	int final_total;
+	
+	for i = startPos; i < endPos; i++){
+		strcpy(str1, entries[i]);
+		strcpy(str2, entries[i+1]);
+		
+		for(j = 0; j < LINE_LENGTH; j++){
+			str1_total += Integer.parseInt(str1[j]);
+			str2_total += Integer.parseInt(str2[j]);
+		}
+		
+		final_total = str1_total-str2_total;
+		
+		max_substring[i] = final_total;
+	}
+}
+
