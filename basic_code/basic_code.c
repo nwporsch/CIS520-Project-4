@@ -5,10 +5,11 @@ nclude <stdio.h>
 /*constants*/
 #define NUM_ENTRIES 1000000
 #define NUM_THREADS 8
-#define LINE_LENTH 1000
+#define LINE_LENGTH 1000
 
 /*all entries in file*/
 char entries[NUM_ENTRIES][LINE_LENGTH];
+int max_substring[LINE_LENGTH];
 
 void read_file();
 void get_substring_num(int id);
