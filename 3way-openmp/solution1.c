@@ -1,90 +1,142 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <mpi.h>
+#include <omp.h>
+#include <sys/time.h>
+
+/*constants*/
+#define NUM_ENTRIES 100
+#define NUM_THREADS 1
+#define LINE_LENGTH 1000
 
 
-int ReadInFile(){
-	FILE *wikidump;
-	wikidump = fopen("~dan/625/wiki_dump.txt","r");
-	if(wikidump != NULL){ //Make sure the file was read in properly
+/*all entries in file*/
+char entries[NUM_ENTRIES][LINE_LENGTH];
+int max_substring[NUM_ENTRIES];
 
+int read_file();
+void get_substring_num(int id);
+void print_results();
+
+int main(){
+	//Starting the program so we need to see the current time
+	struct timeval start, readInFile, finish;
+	double timeInterval;
+
+	gettimeofday(&start, NULL);
+
+	if(read_file() != -1){
+		gettimeofday(&readInFile, NULL);		
+		int i;
+
+		omp_set_num_threads(NUM_THREADS);
+
+		#pragma omp parallel
+		{
+			get_substring_num(omp_get_thread_num());
+		}
+		
+		print_results();
+		gettimeofday(&finish, NULL);
+
+		//Print out the timings of for the program
+		timeInterval = (readInFile.tv_sec - start.tv_sec) + ((readInFile.tv_usec - start.tv_usec)/1000000.0);
+		printf("\nTiming completed for program using OpenMP with %d CPUs\n", getenv("SLURM_CPUS_ON_NODE"));
+		printf("Reading in File: %lf microseconds\n", timeInterval); 
+		timeInterval = (finish.tv_sec - readInFile.tv_sec) + ((finish.tv_usec - readInFile.tv_usec)/1000000.0);
+		printf("Comparisons of wiki pages: %lf microseconds\n", timeInterval);
+		timeInterval = (finish.tv_sec - start.tv_sec) + ((finish.tv_usec - start.tv_usec)/1000000.0);
+		printf("Overall time: %lf microseconds\n", timeInterval); 
 	}
-	else{
+
+	return 0;
+}
+
+
+int read_file(){
+	
+	FILE *fp;
+	char str1[LINE_LENGTH];
+	fp = fopen("/homes/nwporsch/CIS520-Project-4/smallwiki.txt", "r");
+	
+	if(fp == NULL) {
+		perror("Failed: ");
 		return -1;
 	}
-
+	
+	/* Add each line of the file into entries */
+	int lineNumber = 0;
+	char ch = ' ';
+	int currentLengthOfString = 0;
+	
+	while(ch != EOF && lineNumber < NUM_ENTRIES){
+		if(currentLengthOfString >= LINE_LENGTH || ch == '\n'){
+			strcpy(entries[lineNumber],str1);
+			printf("%s\n", entries[lineNumber])
+		 	currentLengthOfString = 0;
+			lineNumber++;
+			if(ch != '\n'){
+				while(ch != '\n' && ch != EOF){
+					ch = fgetc(fp);
+				}
+			}
+		}
+		else{
+			ch = fgetc(fp);
+			strncat(str1, &ch,1);
+			currentLengthOfString++;
+		}
+	}
+/*	while(fgets(str1, LINE_LENGTH, fp) != NULL && i < NUM_ENTRIES){
+		strcpy(entries[i], str1);
+		printf("%d: %s\n", i,entries[i]);
+		i++;
+	}
+*/
+	fclose(fp);
+	return 0;
 }
 
-int main(int argc, char* argv[]){
-	ReadInFile();
+void get_substring_num(int id){
+	int startPos = id * (NUM_ENTRIES / NUM_THREADS);
+	int endPos = startPos + (NUM_ENTRIES / NUM_THREADS);
+	
+	char str1[LINE_LENGTH];
+	char str2[LINE_LENGTH];
+	
+	int str1_total = 0;
+	int str2_total = 0;
+	
+	int i, j;
+	int final_total;
 
- 	MPI_Status status;
-  int num, rank, size, tag, next, from;
 
-  /* Start up MPI */
-
-  MPI_Init(&argc, &argv);
-  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  MPI_Comm_size(MPI_COMM_WORLD, &size);
- 
-  /* Arbitrarily choose 201 to be our tag.  Calculate the */
-  /* rank of the next process in the ring.  Use the modulus */
-  /* operator so that the last process "wraps around" to rank */
-  /* zero. */
-
-  tag = 201;
-  next = (rank + 1) % size;
-  from = (rank + size - 1) % size;
-
-  /* If we are the "console" process, get a integer from the */
-  /* user to specify how many times we want to go around the */
-  /* ring */
-
-  if (rank == 0) {
-    printf("Enter the number of times around the ring: ");
-    scanf("%d", &num);
-    --num;
-
-    printf("Process %d sending %d to %d\n", rank, num, next);
-    MPI_Send(&num, 1, MPI_INT, next, tag, MPI_COMM_WORLD); 
-  }
-
-  /* Pass the message around the ring.  The exit mechanism works */
-  /* as follows: the message (a positive integer) is passed */
-  /* around the ring.  Each time is passes rank 0, it is decremented. */
-  /* When each processes receives the 0 message, it passes it on */
-  /* to the next process and then quits.  By passing the 0 first, */
-  /* every process gets the 0 message and can quit normally. */
-
-  while (1) {
-
-    MPI_Recv(&num, 1, MPI_INT, from, tag, MPI_COMM_WORLD, &status);
-    printf("Process %d received %d\n", rank, num);
-
-    if (rank == 0) {
-      num--;
-      printf("Process 0 decremented num\n");
-    }
-
-    printf("Process %d sending %d to %d\n", rank, num, next);
-    MPI_Send(&num, 1, MPI_INT, next, tag, MPI_COMM_WORLD);
-
-    if (num == 0) {
-      printf("Process %d exiting\n", rank);
-      break;
-    }
-  }
-
-  /* The last process does one extra send to process 0, which needs */
-  /* to be received before the program can exit */
-
-  if (rank == 0)
-    MPI_Recv(&num, 1, MPI_INT, from, tag, MPI_COMM_WORLD, &status);
-
-  /* Quit */
-
-  MPI_Finalize();
-  return 0;
+	#pragma omp private(startPos,endPos,str1,str2,str1_total,str2_total,i,j,final_total)
+	for( i = startPos; i < endPos - 1; i++){
+		strcpy(str1, entries[i]);
+		strcpy(str2, entries[i+1]);		
+		for(j = 0; j < LINE_LENGTH; j++){
+			if(j < strlen(str1)){
+				str1_total = str1_total +  (int)str1[j];
+			}
+			if(j< strlen(str2)){
+				str2_total = str2_total + (int)str2[j];
+			}
+		}
+		
+		final_total = str1_total-str2_total;
+		
+		max_substring[i] = final_total;
+	}
 }
 
+void print_results(){
+	int i = 0;
+	int total = 0;
+	for ( i = 0; i < NUM_ENTRIES; i++ ) {
+		total += max_substring[i];
+		printf("%d - %d: %d\n", i, i+1, max_substring[i]);
+	}
+	
+	
+}
