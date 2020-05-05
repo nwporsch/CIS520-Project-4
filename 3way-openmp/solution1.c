@@ -57,8 +57,8 @@ int read_file(){
 	
 	FILE *fp;
 	char str1[LINE_LENGTH] = "";
-	fp = fopen("/homes/dan/625/wiki_dump.txt", "r");
-	
+	//fp = fopen("/homes/dan/625/wiki_dump.txt", "r");
+	fp = fopen("/homes/nwporsch/CIS520-Project-4/smallwiki.txt","r");
 	if(fp == NULL) {
 		perror("Failed: ");
 		return -1;
@@ -67,50 +67,21 @@ int read_file(){
 	/* Add each line of the file into entries */
 	int lineNumber = 0;
 	char ch = ' ';
-	char previousch = ' ';
 	int currentLengthOfString = 0;
+	char * line = NULL;
+	size_t len = 0;
+	ssize_t read;
 	
-	while(ch != EOF || lineNumber <= NUM_ENTRIES){
-		ch = fgetc(fp);
-		if(ch == 'n' && previousch == '\\'){
-			ch = '\n';
-		}		
+	while((read = getline(&line, &len, fp)) != -1 || lineNumber < NUM_ENTRIES){
+		strncpy(entries[lineNumber], line, LINE_LENGTH-1);
+		entries[lineNumber][LINE_LENGTH] = 0;
+		lineNumber++;
 
-
-		if(currentLengthOfString >= LINE_LENGTH || ch == '\n'){
-	
-			strcpy(entries[lineNumber],str1);
-			strcpy(str1, "");
-			currentLengthOfString = 0;
-			lineNumber++;
-
-			if(lineNumber == 101){
-				break;
-			}
-
-			if(ch != '\n'){
-				while(ch != '\n' || ch != EOF){
-					previousch = ch;
-					ch = fgetc(fp);
-					if(previousch == '\\' && ch == 'n'){
-						ch = '\n';
-					}
-					
-				}
-			}
-		}
-		else{
-			if(ch != '\\'){
-				strncat(str1, &ch,1);
-				currentLengthOfString++;
-			}
-			previousch = ch;
-		}
 	}
-
 	fclose(fp);
 	return 0;
 }
+
 
 void get_substring_num(int id){
 	int startPos = id * (NUM_ENTRIES / NUM_THREADS);
@@ -130,6 +101,7 @@ void get_substring_num(int id){
 	for( i = startPos; i < endPos - 1; i++){
 		strcpy(str1, entries[i]);
 		strcpy(str2, entries[i+1]);		
+		
 		for(j = 0; j < LINE_LENGTH; j++){
 			if(j < strlen(str1)){
 				str1_total = str1_total +  (int)str1[j];
@@ -142,6 +114,7 @@ void get_substring_num(int id){
 		final_total = str1_total-str2_total;
 		
 		max_substring[i] = final_total;
+
 	}
 }
 
