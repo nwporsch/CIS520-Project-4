@@ -40,13 +40,13 @@ int main(){
 		gettimeofday(&finish, NULL);
 
 		//Print out the timings of for the program
-		timeInterval = (readInFile.tv_sec - start.tv_sec) + ((readInFile.tv_usec - start.tv_usec)/1000000.0);
-		printf("\nTiming completed for program using OpenMP with %d CPUs\n", getenv("SLURM_CPUS_ON_NODE"));
-		printf("Reading in File: %lf microseconds\n", timeInterval); 
-		timeInterval = (finish.tv_sec - readInFile.tv_sec) + ((finish.tv_usec - readInFile.tv_usec)/1000000.0);
-		printf("Comparisons of wiki pages: %lf microseconds\n", timeInterval);
-		timeInterval = (finish.tv_sec - start.tv_sec) + ((finish.tv_usec - start.tv_usec)/1000000.0);
-		printf("Overall time: %lf microseconds\n", timeInterval); 
+		timeInterval = ((readInFile.tv_sec - start.tv_sec) * 1000.0) + ((readInFile.tv_usec - start.tv_usec) / 1000.0);
+		printf("\nTiming completed for program using OpenMP with %d threads\n", NUM_THREADS);
+		printf("Reading in File: %lf nanoseconds\n", timeInterval); 
+		timeInterval = ((finish.tv_sec - readInFile.tv_sec) * 1000.0) + ((finish.tv_usec - readInFile.tv_usec) / 1000.0);
+		printf("Comparisons of wiki pages: %lf nanoseconds\n", timeInterval);
+		timeInterval = ((finish.tv_sec - start.tv_sec) * 1000.0) + ((finish.tv_usec - start.tv_usec) / 1000.0);
+		printf("Overall time: %lf nanoseconds\n", timeInterval); 
 	}
 
 	return 0;
@@ -56,8 +56,8 @@ int main(){
 int read_file(){
 	
 	FILE *fp;
-	char str1[LINE_LENGTH];
-	fp = fopen("/homes/nwporsch/CIS520-Project-4/smallwiki.txt", "r");
+	char str1[LINE_LENGTH] = "";
+	fp = fopen("/homes/dan/625/wiki_dump.txt", "r");
 	
 	if(fp == NULL) {
 		perror("Failed: ");
@@ -67,32 +67,47 @@ int read_file(){
 	/* Add each line of the file into entries */
 	int lineNumber = 0;
 	char ch = ' ';
+	char previousch = ' ';
 	int currentLengthOfString = 0;
 	
-	while(ch != EOF && lineNumber < NUM_ENTRIES){
+	while(ch != EOF || lineNumber <= NUM_ENTRIES){
+		ch = fgetc(fp);
+		if(ch == 'n' && previousch == '\\'){
+			ch = '\n';
+		}		
+
+
 		if(currentLengthOfString >= LINE_LENGTH || ch == '\n'){
+	
 			strcpy(entries[lineNumber],str1);
-			printf("%s\n", entries[lineNumber])
-		 	currentLengthOfString = 0;
+			strcpy(str1, "");
+			currentLengthOfString = 0;
 			lineNumber++;
+
+			if(lineNumber == 101){
+				break;
+			}
+
 			if(ch != '\n'){
-				while(ch != '\n' && ch != EOF){
+				while(ch != '\n' || ch != EOF){
+					previousch = ch;
 					ch = fgetc(fp);
+					if(previousch == '\\' && ch == 'n'){
+						ch = '\n';
+					}
+					
 				}
 			}
 		}
 		else{
-			ch = fgetc(fp);
-			strncat(str1, &ch,1);
-			currentLengthOfString++;
+			if(ch != '\\'){
+				strncat(str1, &ch,1);
+				currentLengthOfString++;
+			}
+			previousch = ch;
 		}
 	}
-/*	while(fgets(str1, LINE_LENGTH, fp) != NULL && i < NUM_ENTRIES){
-		strcpy(entries[i], str1);
-		printf("%d: %s\n", i,entries[i]);
-		i++;
-	}
-*/
+
 	fclose(fp);
 	return 0;
 }

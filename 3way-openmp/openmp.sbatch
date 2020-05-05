@@ -4,3 +4,4 @@
 #SBATCH --cpus-per-task=1 
 #SBATCH --ntasks=1 
 #SBATCH --nodes=1
+./output
