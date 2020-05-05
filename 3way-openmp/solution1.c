@@ -5,8 +5,8 @@
 #include <sys/time.h>
 
 /*constants*/
-#define NUM_ENTRIES 100
-#define NUM_THREADS 1
+#define NUM_ENTRIES 10000
+#define NUM_THREADS 8
 #define LINE_LENGTH 1000
 
 
@@ -41,7 +41,7 @@ int main(){
 
 		//Print out the timings of for the program
 		timeInterval = ((readInFile.tv_sec - start.tv_sec) * 1000.0) + ((readInFile.tv_usec - start.tv_usec) / 1000.0);
-		printf("\nTiming completed for program using OpenMP with %d threads\n", NUM_THREADS);
+		printf("\nTiming completed for program using OpenMP with %d threads and %d CPUs\n", NUM_THREADS, getenv("SLURM_CPUS_ON_NODE"));
 		printf("Reading in File: %lf nanoseconds\n", timeInterval); 
 		timeInterval = ((finish.tv_sec - readInFile.tv_sec) * 1000.0) + ((finish.tv_usec - readInFile.tv_usec) / 1000.0);
 		printf("Comparisons of wiki pages: %lf nanoseconds\n", timeInterval);
