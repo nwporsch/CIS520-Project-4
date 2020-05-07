@@ -5,7 +5,7 @@
 #include <sys/time.h>
 
 /*constants*/
-#define NUM_ENTRIES 100
+#define NUM_ENTRIES 1000
 #define NUM_THREADS 1
 #define LINE_LENGTH 1000
 
@@ -41,7 +41,7 @@ int main(){
 
 		//Print out the timings of for the program
 		timeInterval = ((readInFile.tv_sec - start.tv_sec) * 1000.0) + ((readInFile.tv_usec - start.tv_usec) / 1000.0);
-		printf("\nTiming completed for program using OpenMP with %d threads\n", NUM_THREADS);
+		printf("\nTiming completed for program using OpenMP with %d threads and %d CPUs\n", NUM_THREADS, getenv("SLURM_CPUS_ON_NODE"));
 		printf("Reading in File: %lf nanoseconds\n", timeInterval); 
 		timeInterval = ((finish.tv_sec - readInFile.tv_sec) * 1000.0) + ((finish.tv_usec - readInFile.tv_usec) / 1000.0);
 		printf("Comparisons of wiki pages: %lf nanoseconds\n", timeInterval);
@@ -57,13 +57,13 @@ int read_file(){
 	
 	FILE *fp;
 	char str1[LINE_LENGTH] = "";
-	//fp = fopen("/homes/dan/625/wiki_dump.txt", "r");
-	fp = fopen("/homes/nwporsch/CIS520-Project-4/smallwiki.txt","r");
+	fp = fopen("/homes/dan/625/wiki_dump.txt", "r");
+	//fp = fopen("/homes/nwporsch/CIS520-Project-4/smallwiki.txt","r");
 	if(fp == NULL) {
 		perror("Failed: ");
 		return -1;
 	}
-	
+
 	/* Add each line of the file into entries */
 	int lineNumber = 0;
 	char ch = ' ';
@@ -71,13 +71,17 @@ int read_file(){
 	char * line = NULL;
 	size_t len = 0;
 	ssize_t read;
-	
-	while((read = getline(&line, &len, fp)) != -1 || lineNumber < NUM_ENTRIES){
-		strncpy(entries[lineNumber], line, LINE_LENGTH-1);
-		entries[lineNumber][LINE_LENGTH] = 0;
-		lineNumber++;
 
+	read = getline(&line,&len,fp);
+	while(lineNumber < NUM_ENTRIES && read != -1){
+		strncpy(entries[lineNumber], line, LINE_LENGTH-2);
+		lineNumber++;
+		entries[lineNumber][LINE_LENGTH-1] = 0;
+		read = getline(&line,&len,fp);
 	}
+	
+	
+
 	fclose(fp);
 	return 0;
 }
@@ -114,7 +118,6 @@ void get_substring_num(int id){
 		final_total = str1_total-str2_total;
 		
 		max_substring[i] = final_total;
-
 	}
 }
 
