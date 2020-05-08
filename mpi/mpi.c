@@ -1,9 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/time.h>
-#include <mpi.h>
-
 /*constants*/
 #define NUM_ENTRIES 100
 #define NUM_THREADS 1
@@ -22,31 +16,53 @@ int main(){
 	//Starting the program so we need to see the current time
 	struct timeval start, readInFile, finish;
 	double timeInterval;
+	
+	MPI_Status Status;
+	int rc;
+	int numtasks, rank;	
 
 	gettimeofday(&start, NULL);
 
-	if(read_file() != -1){
-		gettimeofday(&readInFile, NULL);		
-		int i;
-
-		for(i = 0; i < NUM_THREADS; i++){
+	rc = MPI_Init(&argc, &argv);
 	
-			get_substring_num(i);
-		}
-		
-		print_results();
-		gettimeofday(&finish, NULL);
-
-		//Print out the timings of for the program
-		timeInterval = ((readInFile.tv_sec - start.tv_sec) * 1000.0) + ((readInFile.tv_usec - start.tv_usec) / 1000.0);
-		printf("\nTiming completed for program using base configuration with %d threads\n", NUM_THREADS);
-		printf("Reading in File: %lf nanoseconds\n", timeInterval); 
-		timeInterval = ((finish.tv_sec - readInFile.tv_sec) * 1000.0) + ((finish.tv_usec - readInFile.tv_usec) / 1000.0);
-		printf("Comparisons of wiki pages: %lf nanoseconds\n", timeInterval);
-		timeInterval = ((finish.tv_sec - start.tv_sec) * 1000.0) + ((finish.tv_usec - start.tv_usec) / 1000.0);
-		printf("Overall time: %lf nanoseconds\n", timeInterval); 
+	if(rc != MPI_SUCCESS)
+	{
+		printf ("Error starting MPI program. Terminating.\n");
+        	MPI_Abort(MPI_COMM_WORLD, rc);
 	}
 	
+	MPI_Comm_size(MPI_COMM_WORLD,&numtasks);
+	MPI_Comm_rank(MPI_COMM_WORLD,&rank);
+
+	NUM_THREADS = numtasks;
+	printf("size = %d rank = %d\n", numtasks, rank);
+	fflush(stdout);
+	if(rank ==0){
+		if(read_file() != -1){
+			gettimeofday(&readInFile, NULL);		
+			int i;
+			MPI_Bcast(max_substring, BUFFSIZE, MPI_INT, 0, MPI_COMM_WORLD)
+			for(i = 0; i < NUM_THREADS; i++){
+	
+				get_substring_num(i);
+			}
+			print_results();
+			gettimeofday(&finish, NULL);
+
+			//Print out the timings of for the program
+			timeInterval = ((readInFile.tv_sec - start.tv_sec) * 1000.0) + ((readInFile.tv_usec - start.tv_usec) / 1000.0);
+			printf("\nTiming completed for program using base configuration with %d threads\n", NUM_THREADS);
+			printf("Reading in File: %lf nanoseconds\n", timeInterval); 
+			timeInterval = ((finish.tv_sec - readInFile.tv_sec) * 1000.0) + ((finish.tv_usec - readInFile.tv_usec) / 1000.0);
+			printf("Comparisons of wiki pages: %lf nanoseconds\n", timeInterval);
+			timeInterval = ((finish.tv_sec - start.tv_sec) * 1000.0) + ((finish.tv_usec - start.tv_usec) / 1000.0);
+			printf("Overall time: %lf nanoseconds\n", timeInterval); 
+		}
+	}	
+
+}
+
+	MPI_Finalize();
 	return 0;
 }
 
