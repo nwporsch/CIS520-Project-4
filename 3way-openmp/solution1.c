@@ -4,38 +4,57 @@
 #include <omp.h>
 #include <sys/time.h>
 
-/*constants*/
-#define NUM_ENTRIES 1000
-#define NUM_THREADS 1
 #define LINE_LENGTH 1000
+
+/*constants*/
+int NUM_ENTRIES = 1000;
+int NUM_THREADS = 1;
 
 
 /*all entries in file*/
-char entries[NUM_ENTRIES][LINE_LENGTH];
-int max_substring[NUM_ENTRIES];
+char **entries;
+int *max_substring;
 
 int read_file();
 void get_substring_num(int id);
 void print_results();
 
-int main(){
+int main(int argc, char* argv[]){
+
 	//Starting the program so we need to see the current time
 	struct timeval start, readInFile, finish;
 	double timeInterval;
+	int i = 0;
 
+	
+	//See if arguments were passed
+	if(argc == 3){
+	
+		NUM_ENTRIES = strtol(argv[1], NULL, 10);	
+		NUM_THREADS = strtol(argv[2], NULL, 10);
+		max_substring = (int*)malloc(NUM_ENTRIES * sizeof(int));
+		entries = malloc((NUM_ENTRIES)* sizeof(char*));
+		while(i < NUM_ENTRIES){
+			entries[i] = malloc(LINE_LENGTH * sizeof(char));
+			i++;
+		}
+	}
+	else{
+		perror("Invalid amount of arguments");
+		return -1;
+	}
 	gettimeofday(&start, NULL);
 
 	if(read_file() != -1){
 		gettimeofday(&readInFile, NULL);		
-		int i;
-
+	
 		omp_set_num_threads(NUM_THREADS);
 
 		#pragma omp parallel
 		{
 			get_substring_num(omp_get_thread_num());
 		}
-		
+
 		print_results();
 		gettimeofday(&finish, NULL);
 
@@ -49,6 +68,13 @@ int main(){
 		printf("Overall time: %lf nanoseconds\n", timeInterval); 
 	}
 
+	free(max_substring);
+	i = 0;
+	while(i < NUM_ENTRIES){
+		free(entries[i]);
+		i++;
+	}
+	free(entries);
 	return 0;
 }
 
@@ -74,10 +100,13 @@ int read_file(){
 
 	read = getline(&line,&len,fp);
 	while(lineNumber < NUM_ENTRIES && read != -1){
+		
 		strncpy(entries[lineNumber], line, LINE_LENGTH-2);
+		
 		lineNumber++;
-		entries[lineNumber][LINE_LENGTH-1] = 0;
+		
 		read = getline(&line,&len,fp);
+		
 	}
 	
 	
