@@ -1,0 +1,227 @@
+
+[32m[1m############################[33m[1m  sacct -u nwporsch  for 1 days  [32m[1m############################[0m
+[32m[1m                                      max gb used on a node /   gb requested per node[0m
+  9504323  start.sh    [38;5;27m[1mdwarf35          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504324  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504325  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504326  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504327  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504328  start.sh    [38;5;27m[1mdwarf10          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504329  start.sh    [38;5;27m[1mdwarf10          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504330  start.sh    [38;5;27m[1mdwarf16          [0m 1 n   1 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504331  start.sh    [38;5;27m[1mdwarf16          [0m 1 n   1 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504332  start.sh    [38;5;27m[1mdwarf18          [0m 1 n   1 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504333  start.sh    [38;5;27m[1mdwarf18          [0m 1 n   1 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504334  start.sh    [38;5;27m[1mdwarf15          [0m 1 n   1 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504335  start.sh    [38;5;27m[1mdwarf15          [0m 1 n   1 c          / 32gb  [0m  00:00:11  [0mCOMPLETED[0m
+  9504336  start.sh    [38;5;27m[1mdwarf46          [0m 1 n   1 c          / 32gb  [0m  00:00:11  [0mCOMPLETED[0m
+  9504337  start.sh    [38;5;27m[1mdwarf54          [0m 1 n   1 c          / 32gb  [0m  00:00:11  [0mCOMPLETED[0m
+  9504338  start.sh    [38;5;27m[1mdwarf55          [0m 1 n   1 c          / 32gb  [0m  00:00:11  [0mCOMPLETED[0m
+  9504339  start.sh    [38;5;27m[1mdwarf62          [0m 1 n   1 c          / 32gb  [0m  00:00:11  [0mCOMPLETED[0m
+  9504340  start.sh    [38;5;27m[1mdwarf57          [0m 1 n   1 c          / 32gb  [0m  00:00:11  [0mCOMPLETED[0m
+  9504341  start.sh    [38;5;27m[1mdwarf57          [0m 1 n   1 c  [0m  0.48gb/ 32gb  [0m  00:00:38  [0mCOMPLETED[0m
+  9504342  start.sh    [38;5;27m[1mdwarf47          [0m 1 n   1 c          / 32gb  [0m  00:00:33  [0mCOMPLETED[0m
+  9504343  start.sh    [38;5;27m[1mdwarf47          [0m 1 n   1 c          / 32gb  [0m  00:00:33  [0mCOMPLETED[0m
+  9504344  start.sh    [38;5;27m[1mdwarf40          [0m 1 n   1 c          / 32gb  [0m  00:00:33  [0mCOMPLETED[0m
+  9504345  start.sh    [38;5;27m[1mdwarf40          [0m 1 n   1 c          / 32gb  [0m  00:00:33  [0mCOMPLETED[0m
+  9504346  start.sh    [38;5;27m[1mdwarf42          [0m 1 n   1 c          / 32gb  [0m  00:00:33  [0mCOMPLETED[0m
+  9504347  start.sh    [38;5;27m[1mdwarf42          [0m 1 n   1 c  [0m  0.95gb/ 32gb  [0m  00:01:03  [0mCOMPLETED[0m
+  9504348  start.sh    [38;5;27m[1mdwarf41          [0m 1 n   1 c  [0m  0.95gb/ 32gb  [0m  00:01:03  [0mCOMPLETED[0m
+  9504349  start.sh    [38;5;27m[1mdwarf41          [0m 1 n   1 c  [0m  0.95gb/ 32gb  [0m  00:01:03  [0mCOMPLETED[0m
+  9504350  start.sh    [38;5;27m[1mdwarf44          [0m 1 n   1 c  [0m  0.95gb/ 32gb  [0m  00:01:03  [0mCOMPLETED[0m
+  9504351  start.sh    [38;5;27m[1mdwarf44          [0m 1 n   1 c  [0m  0.95gb/ 32gb  [0m  00:01:03  [0mCOMPLETED[0m
+  9504352  start.sh    [38;5;27m[1mdwarf45          [0m 1 n   1 c  [0m  0.95gb/ 32gb  [0m  00:01:03  [0mCOMPLETED[0m
+  9504353  start.sh    [38;5;27m[1mdwarf36          [0m 1 n   2 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504354  start.sh    [38;5;27m[1mdwarf36          [0m 1 n   2 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504355  start.sh    [38;5;27m[1mdwarf50          [0m 1 n   2 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504356  start.sh    [38;5;27m[1mdwarf50          [0m 1 n   2 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504357  start.sh    [38;5;27m[1mdwarf50          [0m 1 n   2 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504358  start.sh    [38;5;27m[1mdwarf35          [0m 1 n   2 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504359  start.sh    [38;5;27m[1mdwarf22          [0m 1 n   2 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504360  start.sh    [38;5;27m[1mdwarf22          [0m 1 n   2 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504361  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   2 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504362  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   2 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504363  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   2 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504364  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   2 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504365  start.sh    [38;5;27m[1mdwarf36          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504366  start.sh    [38;5;27m[1mdwarf35          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504367  start.sh    [38;5;27m[1mdwarf46          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504368  start.sh    [38;5;27m[1mdwarf54          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504369  start.sh    [38;5;27m[1mdwarf55          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504370  start.sh    [38;5;27m[1mdwarf57          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504371  start.sh    [38;5;27m[1mdwarf62          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504372  start.sh    [38;5;27m[1mdwarf36          [0m 1 n   1 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504373  start.sh    [38;5;27m[1mdwarf35          [0m 1 n   1 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504374  start.sh    [38;5;27m[1mdwarf46          [0m 1 n   1 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504375  start.sh    [38;5;27m[1mdwarf54          [0m 1 n   1 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504376  start.sh    [38;5;27m[1mdwarf55          [0m 1 n   1 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504377  start.sh    [38;5;27m[1mdwarf57          [0m 1 n   1 c          / 32gb  [0m  00:00:09  [0mCOMPLETED[0m
+  9504378  start.sh    [38;5;27m[1mdwarf62          [0m 1 n   1 c          / 32gb  [0m  00:00:07  [0mCOMPLETED[0m
+  9504379  start.sh    [38;5;27m[1mdwarf35          [0m 1 n   1 c          / 32gb  [0m  00:00:09  [0mCOMPLETED[0m
+  9504380  start.sh    [38;5;27m[1mdwarf46          [0m 1 n   1 c          / 32gb  [0m  00:00:09  [0mCOMPLETED[0m
+  9504381  start.sh    [38;5;27m[1mdwarf54          [0m 1 n   1 c          / 32gb  [0m  00:00:09  [0mCOMPLETED[0m
+  9504382  start.sh    [38;5;27m[1mdwarf55          [0m 1 n   1 c          / 32gb  [0m  00:00:09  [0mCOMPLETED[0m
+  9504383  start.sh    [38;5;27m[1mdwarf57          [0m 1 n   1 c  [0m  0.47gb/ 32gb  [0m  00:00:32  [0mCOMPLETED[0m
+  9504384  start.sh    [38;5;27m[1mdwarf62          [0m 1 n   1 c          / 32gb  [0m  00:00:27  [0mCOMPLETED[0m
+  9504385  start.sh    [38;5;27m[1mdwarf46          [0m 1 n   1 c          / 32gb  [0m  00:00:30  [0mCOMPLETED[0m
+  9504386  start.sh    [38;5;27m[1mdwarf54          [0m 1 n   1 c  [0m  0.48gb/ 32gb  [0m  00:00:35  [0mCOMPLETED[0m
+  9504387  start.sh    [38;5;27m[1mdwarf55          [0m 1 n   1 c  [0m  0.48gb/ 32gb  [0m  00:00:35  [0mCOMPLETED[0m
+  9504388  start.sh    [38;5;27m[1mdwarf57          [0m 1 n   1 c  [0m  0.48gb/ 32gb  [0m  00:00:35  [0mCOMPLETED[0m
+  9504389  start.sh    [38;5;27m[1mdwarf62          [0m 1 n   1 c  [0m  0.95gb/ 32gb  [0m  00:00:54  [0mCOMPLETED[0m
+  9504390  start.sh    [38;5;27m[1mdwarf35          [0m 1 n   1 c  [0m  0.95gb/ 32gb  [0m  00:00:55  [0mCOMPLETED[0m
+  9504391  start.sh    [38;5;27m[1mdwarf46          [0m 1 n   1 c  [0m  0.95gb/ 32gb  [0m  00:00:53  [0mCOMPLETED[0m
+  9504392  start.sh    [38;5;27m[1mdwarf54          [0m 1 n   1 c  [0m  0.95gb/ 32gb  [0m  00:01:03  [0mCOMPLETED[0m
+  9504393  start.sh    [38;5;27m[1mdwarf55          [0m 1 n   1 c  [0m  0.95gb/ 32gb  [0m  00:01:03  [0mCOMPLETED[0m
+  9504394  start.sh    [38;5;27m[1mdwarf57          [0m 1 n   1 c  [0m  0.95gb/ 32gb  [0m  00:01:05  [0mCOMPLETED[0m
+  9504395  start.sh    [38;5;27m[1mdwarf35          [0m 1 n   2 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504396  start.sh    [38;5;27m[1mdwarf40          [0m 1 n   2 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504397  start.sh    [38;5;27m[1mdwarf42          [0m 1 n   2 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504398  start.sh    [38;5;27m[1mdwarf47          [0m 1 n   2 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504399  start.sh    [38;5;27m[1mdwarf57          [0m 1 n   2 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504400  start.sh    [38;5;27m[1mdwarf35          [0m 1 n   2 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504401  start.sh    [38;5;27m[1mdwarf40          [0m 1 n   2 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504402  start.sh    [38;5;27m[1mdwarf42          [0m 1 n   2 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504403  start.sh    [38;5;27m[1mdwarf47          [0m 1 n   2 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504404  start.sh    [38;5;27m[1mdwarf57          [0m 1 n   2 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504405  start.sh    [38;5;27m[1mdwarf35          [0m 1 n   2 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504406  start.sh    [38;5;27m[1mdwarf40          [0m 1 n   2 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504407  start.sh    [38;5;27m[1mdwarf42          [0m 1 n   2 c          / 32gb  [0m  00:00:09  [0mCOMPLETED[0m
+  9504408  start.sh    [38;5;27m[1mdwarf47          [0m 1 n   2 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504409  start.sh    [38;5;27m[1mdwarf57          [0m 1 n   2 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504410  start.sh    [38;5;27m[1mdwarf35          [0m 1 n   2 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504411  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   2 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504412  start.sh    [38;5;27m[1mdwarf40          [0m 1 n   2 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504413  start.sh    [38;5;27m[1mdwarf41          [0m 1 n   2 c          / 32gb  [0m  00:00:27  [0mCOMPLETED[0m
+  9504414  start.sh    [38;5;27m[1mdwarf42          [0m 1 n   2 c          / 32gb  [0m  00:00:16  [0mCOMPLETED[0m
+  9504415  start.sh    [38;5;27m[1mdwarf44          [0m 1 n   2 c          / 32gb  [0m  00:00:16  [0mCOMPLETED[0m
+  9504416  start.sh    [38;5;27m[1mdwarf45          [0m 1 n   2 c          / 32gb  [0m  00:00:16  [0mCOMPLETED[0m
+  9504417  start.sh    [38;5;27m[1mdwarf47          [0m 1 n   2 c          / 32gb  [0m  00:00:16  [0mCOMPLETED[0m
+  9504418  start.sh    [38;5;27m[1mdwarf57          [0m 1 n   2 c          / 32gb  [0m  00:00:18  [0mCOMPLETED[0m
+  9504419  start.sh    [38;5;27m[1mdwarf18          [0m 1 n   2 c  [0m  0.95gb/ 32gb  [0m  00:00:55  [0mCOMPLETED[0m
+  9504420  start.sh    [38;5;27m[1mdwarf18          [0m 1 n   2 c          / 32gb  [0m  00:00:30  [0mCOMPLETED[0m
+  9504421  start.sh    [38;5;27m[1mdwarf35          [0m 1 n   2 c  [0m  0.95gb/ 32gb  [0m  00:00:32  [0mCOMPLETED[0m
+  9504422  start.sh    [38;5;27m[1mdwarf57          [0m 1 n   2 c  [0m  0.95gb/ 32gb  [0m  00:00:34  [0mCOMPLETED[0m
+  9504423  start.sh    [38;5;27m[1mdwarf40          [0m 1 n   2 c          / 32gb  [0m  00:00:28  [0mCOMPLETED[0m
+  9504424  start.sh    [38;5;27m[1mdwarf40          [0m 1 n   2 c          / 32gb  [0m  00:00:28  [0mCOMPLETED[0m
+  9504425  start.sh    [38;5;27m[1mdwarf10          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504426  start.sh    [38;5;27m[1mdwarf16          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504427  start.sh    [38;5;27m[1mdwarf18          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504428  start.sh    [38;5;27m[1mdwarf40          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504429  start.sh    [38;5;27m[1mdwarf42          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504430  start.sh    [38;5;27m[1mdwarf47          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504431  start.sh    [38;5;27m[1mdwarf10          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504432  start.sh    [38;5;27m[1mdwarf16          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504433  start.sh    [38;5;27m[1mdwarf18          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504434  start.sh    [38;5;27m[1mdwarf40          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504435  start.sh    [38;5;27m[1mdwarf42          [0m 1 n   4 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504436  start.sh    [38;5;27m[1mdwarf47          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504437  start.sh    [38;5;27m[1mdwarf10          [0m 1 n   4 c          / 32gb  [0m  00:00:09  [0mCOMPLETED[0m
+  9504438  start.sh    [38;5;27m[1mdwarf16          [0m 1 n   4 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504439  start.sh    [38;5;27m[1mdwarf18          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504440  start.sh    [38;5;27m[1mdwarf40          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504441  start.sh    [38;5;27m[1mdwarf42          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504442  start.sh    [38;5;27m[1mdwarf47          [0m 1 n   4 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504443  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   4 c          / 32gb  [0m  00:00:30  [0mCOMPLETED[0m
+  9504444  start.sh    [38;5;27m[1mdwarf10          [0m 1 n   4 c          / 32gb  [0m  00:00:18  [0mCOMPLETED[0m
+  9504445  start.sh    [38;5;27m[1mdwarf16          [0m 1 n   4 c          / 32gb  [0m  00:00:11  [0mCOMPLETED[0m
+  9504446  start.sh    [38;5;27m[1mdwarf18          [0m 1 n   4 c          / 32gb  [0m  00:00:11  [0mCOMPLETED[0m
+  9504447  start.sh    [38;5;27m[1mdwarf40          [0m 1 n   4 c          / 32gb  [0m  00:00:11  [0mCOMPLETED[0m
+  9504448  start.sh    [38;5;27m[1mdwarf42          [0m 1 n   4 c          / 32gb  [0m  00:00:11  [0mCOMPLETED[0m
+  9504449  start.sh    [38;5;27m[1mdwarf47          [0m 1 n   4 c  [0m  0.95gb/ 32gb  [0m  00:00:54  [0mCOMPLETED[0m
+  9504450  start.sh    [38;5;27m[1mdwarf22          [0m 1 n   4 c          / 32gb  [0m  00:00:30  [0mCOMPLETED[0m
+  9504451  start.sh    [38;5;27m[1mdwarf22          [0m 1 n   4 c          / 32gb  [0m  00:00:18  [0mCOMPLETED[0m
+  9504452  start.sh    [38;5;27m[1mdwarf36          [0m 1 n   4 c          / 32gb  [0m  00:00:17  [0mCOMPLETED[0m
+  9504453  start.sh    [38;5;27m[1mdwarf10          [0m 1 n   4 c          / 32gb  [0m  00:00:16  [0mCOMPLETED[0m
+  9504454  start.sh    [38;5;27m[1mdwarf16          [0m 1 n   4 c          / 32gb  [0m  00:00:16  [0mCOMPLETED[0m
+  9504455  start.sh    [38;5;27m[1mdwarf36          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504456  start.sh    [38;5;27m[1mdwarf15          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504457  start.sh    [38;5;27m[1mdwarf22          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504458  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504459  start.sh    [38;5;27m[1mdwarf41          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504460  start.sh    [38;5;27m[1mdwarf44          [0m 1 n   8 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504461  start.sh    [38;5;27m[1mdwarf45          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504462  start.sh    [38;5;27m[1mdwarf36          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504463  start.sh    [38;5;27m[1mdwarf15          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504464  start.sh    [38;5;27m[1mdwarf22          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504465  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504466  start.sh    [38;5;27m[1mdwarf41          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504467  start.sh    [38;5;27m[1mdwarf44          [0m 1 n   8 c          / 32gb  [0m  00:00:09  [0mCOMPLETED[0m
+  9504468  start.sh    [38;5;27m[1mdwarf45          [0m 1 n   8 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504469  start.sh    [38;5;27m[1mdwarf36          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504470  start.sh    [38;5;27m[1mdwarf15          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504471  start.sh    [38;5;27m[1mdwarf22          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504472  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   8 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504473  start.sh    [38;5;27m[1mdwarf41          [0m 1 n   8 c          / 32gb  [0m  00:00:26  [0mCOMPLETED[0m
+  9504474  start.sh    [38;5;27m[1mdwarf44          [0m 1 n   8 c          / 32gb  [0m  00:00:15  [0mCOMPLETED[0m
+  9504475  start.sh    [38;5;27m[1mdwarf45          [0m 1 n   8 c          / 32gb  [0m  00:00:09  [0mCOMPLETED[0m
+  9504476  start.sh    [38;5;27m[1mdwarf36          [0m 1 n   8 c          / 32gb  [0m  00:00:08  [0mCOMPLETED[0m
+  9504477  start.sh    [38;5;27m[1mdwarf15          [0m 1 n   8 c          / 32gb  [0m  00:00:10  [0mCOMPLETED[0m
+  9504478  start.sh    [38;5;27m[1mdwarf22          [0m 1 n   8 c          / 32gb  [0m  00:00:12  [0mCOMPLETED[0m
+  9504479  start.sh    [38;5;27m[1mdwarf38          [0m 1 n   8 c  [0m  0.95gb/ 32gb  [0m  00:00:57  [0mCOMPLETED[0m
+  9504480  start.sh    [38;5;27m[1mdwarf41          [0m 1 n   8 c          / 32gb  [0m  00:00:29  [0mCOMPLETED[0m
+  9504481  start.sh    [38;5;27m[1mdwarf44          [0m 1 n   8 c          / 32gb  [0m  00:00:18  [0mCOMPLETED[0m
+  9504482  start.sh    [38;5;27m[1mdwarf45          [0m 1 n   8 c          / 32gb  [0m  00:00:13  [0mCOMPLETED[0m
+  9504483  start.sh    [38;5;27m[1mdwarf36          [0m 1 n   8 c          / 32gb  [0m  00:00:11  [0mCOMPLETED[0m
+  9504484  start.sh    [38;5;27m[1mdwarf15          [0m 1 n   8 c          / 32gb  [0m  00:00:10  [0mCOMPLETED[0m
+  9504485  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504486  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504487  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c          / 32gb  [0m  00:00:05  [0mCOMPLETED[0m
+  9504488  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504489  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c          / 32gb  [0m  00:00:02  [0mCOMPLETED[0m
+  9504490  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504491  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c          / 32gb  [0m  00:00:02  [0mCOMPLETED[0m
+  9504492  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504493  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c          / 32gb  [0m  00:00:02  [0mCOMPLETED[0m
+  9504494  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504495  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504496  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504497  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c          / 32gb  [0m  00:00:08  [0mCOMPLETED[0m
+  9504498  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:15  [0mCOMPLETED[0m
+  9504499  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c          / 32gb  [0m  00:00:14  [0mCOMPLETED[0m
+  9504500  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504501  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504502  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+  9504503  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c  [0m  0.48gb/ 32gb  [0m  00:00:32  [0mCOMPLETED[0m
+  9504504  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:19  [0mCOMPLETED[0m
+  9504505  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c          / 32gb  [0m  00:00:12  [0mCOMPLETED[0m
+  9504506  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:09  [0mCOMPLETED[0m
+  9504507  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c          / 32gb  [0m  00:00:07  [0mCOMPLETED[0m
+  9504508  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:07  [0mCOMPLETED[0m
+  9504509  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c  [0m  0.95gb/ 32gb  [0m  00:01:03  [0mCOMPLETED[0m
+  9504510  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c  [0m  0.95gb/ 32gb  [0m  00:00:36  [0mCOMPLETED[0m
+  9504511  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:22  [0mCOMPLETED[0m
+  9504512  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c          / 32gb  [0m  00:00:14  [0mCOMPLETED[0m
+  9504513  start.sh    [38;5;27m[1mdwarf50          [0m 1 n  16 c          / 32gb  [0m  00:00:09  [0mCOMPLETED[0m
+  9504514  start.sh    [38;5;27m[1mdwarf52          [0m 1 n  16 c          / 32gb  [0m  00:00:09  [0mCOMPLETED[0m
+  9504515  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:00  [0mCOMPLETED[0m
+  9504516  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:02  [0mCOMPLETED[0m
+  9504517  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504518  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:01  [0mCOMPLETED[0m
+  9504519  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504520  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:02  [0mCOMPLETED[0m
+  9504521  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:02  [0mCOMPLETED[0m
+  9504522  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:00  [0mCOMPLETED[0m
+  9504523  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:02  [0mCOMPLETED[0m
+  9504524  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:01  [0mCOMPLETED[0m
+  9504525  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:02  [0mCOMPLETED[0m
+  9504526  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:01  [0mCOMPLETED[0m
+  9504527  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:05  [0mCOMPLETED[0m
+  9504528  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504529  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504530  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504531  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:02  [0mCOMPLETED[0m
+  9504532  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504533  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:23  [0mCOMPLETED[0m
+  9504534  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:12  [0mCOMPLETED[0m
+  9504535  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:07  [0mCOMPLETED[0m
+  9504536  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504537  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:03  [0mCOMPLETED[0m
+  9504538  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:02  [0mCOMPLETED[0m
+  9504539  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c  [0m  0.95gb/ 32gb  [0m  00:00:42  [0mCOMPLETED[0m
+  9504540  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:24  [0mCOMPLETED[0m
+  9504541  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:14  [0mCOMPLETED[0m
+  9504542  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:11  [0mCOMPLETED[0m
+  9504543  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:06  [0mCOMPLETED[0m
+  9504544  start.sh    [38;5;27m[1mdwarf61          [0m 1 n  32 c          / 32gb  [0m  00:00:04  [0mCOMPLETED[0m
+
+
