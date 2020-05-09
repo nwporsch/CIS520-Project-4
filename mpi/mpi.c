@@ -1,18 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <omp.h>
+#include <sys/time.h>
+#include <mpi.h>
 /*constants*/
-#define NUM_ENTRIES 100
-#define NUM_THREADS 1
 #define LINE_LENGTH 1000
+#define BUFFSIZE 1000000 
 
+int NUM_ENTRIES = 1000;
+int NUM_THREADS = 1;
 
 /*all entries in file*/
-char entries[NUM_ENTRIES][LINE_LENGTH];
-int max_substring[NUM_ENTRIES];
+char **entries;
+int *max_substring;
 
 int read_file();
 void get_substring_num(int id);
 void print_results();
 
-int main(){
+int main(int argc, char* argv[]){
 	//Starting the program so we need to see the current time
 	struct timeval start, readInFile, finish;
 	double timeInterval;
@@ -41,7 +48,7 @@ int main(){
 		if(read_file() != -1){
 			gettimeofday(&readInFile, NULL);		
 			int i;
-			MPI_Bcast(max_substring, BUFFSIZE, MPI_INT, 0, MPI_COMM_WORLD)
+			MPI_Bcast(max_substring, BUFFSIZE, MPI_INT, 0, MPI_COMM_WORLD);
 			for(i = 0; i < NUM_THREADS; i++){
 	
 				get_substring_num(i);
@@ -59,8 +66,6 @@ int main(){
 			printf("Overall time: %lf nanoseconds\n", timeInterval); 
 		}
 	}	
-
-}
 
 	MPI_Finalize();
 	return 0;
