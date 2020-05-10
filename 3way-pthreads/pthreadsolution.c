@@ -161,12 +161,13 @@ void *get_substring_num(void *id){
 			}
 		}
 
+		pthread_mutex_lock(&mutexsum);
 		final_total = str1_total-str2_total;
 
 		max_substring[i] = final_total;
-
-		pthread_exit(NULL);
+		pthread_mutex_unlock(&mutexsum);
 	}
+	pthread_exit(NULL);
 }
 
 void print_results(){
