@@ -17,7 +17,7 @@ char **entries;
 int *max_substring;
 
 int read_file();
-void get_substring_num(void* id);
+void get_substring_num(void** id);
 void print_results();
 
 int main(int argc, char* argv[]){
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]){
 		gettimeofday(&readInFile, NULL);
 
 		for (i = 0; i < NUM_THREADS; i++ ) {
-			  rc = pthread_create(&threads[i], &attr, get_substring_num, (void *)i);
+			  rc = pthread_create(&threads[i], &attr, get_substring_num, (void **)i);
 			  if (rc) {
 					printf("ERROR; return code from pthread_create() is %d\n", rc);
 					exit(-1);
@@ -135,8 +135,8 @@ int read_file(){
 	return 0;
 }
 
-void get_substring_num(void *id){
-	int startPos = ((int) id) * (NUM_ENTRIES / NUM_THREADS);
+void get_substring_num(void** id){
+	int startPos = ((int) *id) * (NUM_ENTRIES / NUM_THREADS);
 	int endPos = startPos + (NUM_ENTRIES / NUM_THREADS);
 
 	char str1[LINE_LENGTH];
