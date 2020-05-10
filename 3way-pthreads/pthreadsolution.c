@@ -135,7 +135,7 @@ int read_file(){
 	return 0;
 }
 
-void get_substring_num(int id){
+void get_substring_num(void *id){
 	int startPos = id * (NUM_ENTRIES / NUM_THREADS);
 	int endPos = startPos + (NUM_ENTRIES / NUM_THREADS);
 
