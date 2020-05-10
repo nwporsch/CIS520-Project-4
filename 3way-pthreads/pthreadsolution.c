@@ -17,7 +17,7 @@ char **entries;
 int *max_substring;
 
 int read_file();
-void get_substring_num(int id);
+void get_substring_num(void* id);
 void print_results();
 
 int main(int argc, char* argv[]){
@@ -136,7 +136,7 @@ int read_file(){
 }
 
 void get_substring_num(void *id){
-	int startPos = id * (NUM_ENTRIES / NUM_THREADS);
+	int startPos = ((int) id) * (NUM_ENTRIES / NUM_THREADS);
 	int endPos = startPos + (NUM_ENTRIES / NUM_THREADS);
 
 	char str1[LINE_LENGTH];
