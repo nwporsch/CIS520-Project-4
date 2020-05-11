@@ -60,7 +60,7 @@ int main(int argc, char* argv[]){
 
 		//Print out the timings of for the program
 		timeInterval = ((readInFile.tv_sec - start.tv_sec) * 1000.0) + ((readInFile.tv_usec - start.tv_usec) / 1000.0);
-		printf("\nTiming completed for program using OpenMP with %d threads and %d CPUs\n", NUM_THREADS, getenv("SLURM_CPUS_ON_NODE"));
+		printf("\nTiming completed for program using OpenMP with %d threads\n", NUM_THREADS);
 		printf("Reading in File: %lf nanoseconds\n", timeInterval); 
 		timeInterval = ((finish.tv_sec - readInFile.tv_sec) * 1000.0) + ((finish.tv_usec - readInFile.tv_usec) / 1000.0);
 		printf("Comparisons of wiki pages: %lf nanoseconds\n", timeInterval);
