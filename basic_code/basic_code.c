@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
+#include <mpi.h>
 
 /*constants*/
 #define NUM_ENTRIES 100
@@ -45,7 +46,7 @@ int main(){
 		timeInterval = ((finish.tv_sec - start.tv_sec) * 1000.0) + ((finish.tv_usec - start.tv_usec) / 1000.0);
 		printf("Overall time: %lf nanoseconds\n", timeInterval); 
 	}
-
+	
 	return 0;
 }
 
