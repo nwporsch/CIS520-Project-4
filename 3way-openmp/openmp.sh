@@ -9,7 +9,7 @@ do
 	do
 		for k in $threads
 		do
-			sbatch --constraint=dwarves --mail-type=END --time=1:00:00 --mem=32G --cpus-per-task=$i start.sh $j $k -o "OpenMP_dwarves_CORES:$i_Problem:$j_threads:$k"
+			sbatch --constraint=dwarves --mail-type=END --time=1:00:00 --mem=32G --cpus-per-task=$i --output=$j.$k.$i.%J.out start.sh $j $k
 		done
 	done
 done
