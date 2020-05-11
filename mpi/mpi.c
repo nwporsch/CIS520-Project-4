@@ -4,16 +4,17 @@
 #include <omp.h>
 #include <sys/time.h>
 #include <mpi.h>
-/*constants*/
-#define LINE_LENGTH 1000
-#define BUFFSIZE 1000000 
 
-int NUM_ENTRIES = 1000;
-int NUM_THREADS = 1;
+/*constants*/
+#define NUM_ENTRIES 100
+#define LINE_LENGTH 1000
+
+int NUM_THREADS;
 
 /*all entries in file*/
-char **entries;
-int *max_substring;
+char entries[NUM_ENTRIES][LINE_LENGTH];
+int max_substring[NUM_ENTRIES];
+int local_max_substring[NUM_ENTRIES];
 
 int read_file();
 void get_substring_num(int id);
@@ -28,15 +29,15 @@ int main(int argc, char* argv[]){
 	int rc;
 	int numtasks, rank;	
 
-	gettimeofday(&start, NULL);
-
-	rc = MPI_Init(&argc, &argv);
+	rc = MPI_Init(&argc, &argv);	
 	
 	if(rc != MPI_SUCCESS)
 	{
 		printf ("Error starting MPI program. Terminating.\n");
         	MPI_Abort(MPI_COMM_WORLD, rc);
 	}
+
+	gettimeofday(&start, NULL);
 	
 	MPI_Comm_size(MPI_COMM_WORLD,&numtasks);
 	MPI_Comm_rank(MPI_COMM_WORLD,&rank);
@@ -48,11 +49,13 @@ int main(int argc, char* argv[]){
 		if(read_file() != -1){
 			gettimeofday(&readInFile, NULL);		
 			int i;
-			MPI_Bcast(max_substring, BUFFSIZE, MPI_INT, 0, MPI_COMM_WORLD);
+			MPI_Bcast(max_substring, NUM_ENTRIES*LINE_LENGTH, MPI_INT, 0, MPI_COMM_WORLD);
 			for(i = 0; i < NUM_THREADS; i++){
 	
 				get_substring_num(i);
 			}
+
+			MPI_Reduce(local_max_substring, max_substring, NUM_ENTRIES*LINE_LENGTH, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
 			print_results();
 			gettimeofday(&finish, NULL);
 
@@ -101,6 +104,7 @@ int read_file(){
 	return 0;
 }
 
+
 void get_substring_num(int id){
 	int startPos = id * (NUM_ENTRIES / NUM_THREADS);
 	int endPos = startPos + (NUM_ENTRIES / NUM_THREADS);
@@ -134,7 +138,7 @@ void get_substring_num(int id){
 		max_substring[i] = final_total;
 
 	}
-}
+} 
 
 void print_results(){
 	int i = 0;
