@@ -4,38 +4,57 @@
 #include <omp.h>
 #include <sys/time.h>
 
-/*constants*/
-#define NUM_ENTRIES 100
-#define NUM_THREADS 1
 #define LINE_LENGTH 1000
+
+/*constants*/
+int NUM_ENTRIES = 1000;
+int NUM_THREADS = 1;
 
 
 /*all entries in file*/
-char entries[NUM_ENTRIES][LINE_LENGTH];
-int max_substring[NUM_ENTRIES];
+char **entries;
+int *max_substring;
 
 int read_file();
 void get_substring_num(int id);
 void print_results();
 
-int main(){
+int main(int argc, char* argv[]){
+
 	//Starting the program so we need to see the current time
 	struct timeval start, readInFile, finish;
 	double timeInterval;
+	int i = 0;
 
+	
+	//See if arguments were passed
+	if(argc == 3){
+	
+		NUM_ENTRIES = strtol(argv[1], NULL, 10);	
+		NUM_THREADS = strtol(argv[2], NULL, 10);
+		max_substring = (int*)malloc(NUM_ENTRIES * sizeof(int));
+		entries = malloc((NUM_ENTRIES)* sizeof(char*));
+		while(i < NUM_ENTRIES){
+			entries[i] = malloc(LINE_LENGTH * sizeof(char));
+			i++;
+		}
+	}
+	else{
+		perror("Invalid amount of arguments");
+		return -1;
+	}
 	gettimeofday(&start, NULL);
 
 	if(read_file() != -1){
 		gettimeofday(&readInFile, NULL);		
-		int i;
-
+	
 		omp_set_num_threads(NUM_THREADS);
 
 		#pragma omp parallel
 		{
 			get_substring_num(omp_get_thread_num());
 		}
-		
+
 		print_results();
 		gettimeofday(&finish, NULL);
 
@@ -49,21 +68,27 @@ int main(){
 		printf("Overall time: %lf nanoseconds\n", timeInterval); 
 	}
 
+	free(max_substring);
+	i = 0;
+	while(i < NUM_ENTRIES){
+		free(entries[i]);
+		i++;
+	}
+	free(entries);
 	return 0;
 }
 
 
 int read_file(){
-	
 	FILE *fp;
 	char str1[LINE_LENGTH] = "";
-	//fp = fopen("/homes/dan/625/wiki_dump.txt", "r");
-	fp = fopen("/homes/nwporsch/CIS520-Project-4/smallwiki.txt","r");
+	fp = fopen("/homes/dan/625/wiki_dump.txt", "r");
+	//fp = fopen("/homes/nwporsch/CIS520-Project-4/smallwiki.txt","r");
 	if(fp == NULL) {
 		perror("Failed: ");
 		return -1;
 	}
-	
+
 	/* Add each line of the file into entries */
 	int lineNumber = 0;
 	char ch = ' ';
@@ -71,57 +96,72 @@ int read_file(){
 	char * line = NULL;
 	size_t len = 0;
 	ssize_t read;
-	
-	while((read = getline(&line, &len, fp)) != -1 || lineNumber < NUM_ENTRIES){
-		strncpy(entries[lineNumber], line, LINE_LENGTH-1);
-		entries[lineNumber][LINE_LENGTH] = 0;
+
+	read = getline(&line,&len,fp);
+	while(lineNumber < NUM_ENTRIES && read != -1){
+
+		strncpy(entries[lineNumber], line, LINE_LENGTH);
+
 		lineNumber++;
 
+		read = getline(&line,&len,fp);
+
 	}
+
 	fclose(fp);
 	return 0;
+
 }
 
 
 void get_substring_num(int id){
-	int startPos = id * (NUM_ENTRIES / NUM_THREADS);
+	int startPos = ((int) id) * (NUM_ENTRIES / NUM_THREADS);
 	int endPos = startPos + (NUM_ENTRIES / NUM_THREADS);
-	
+
 	char str1[LINE_LENGTH];
 	char str2[LINE_LENGTH];
-	
-	int str1_total = 0;
-	int str2_total = 0;
-	
+
+	int str1_total;
+	int str2_total;
+
 	int i, j;
 	int final_total;
 
 
 	#pragma omp private(startPos,endPos,str1,str2,str1_total,str2_total,i,j,final_total)
-	for( i = startPos; i < endPos - 1; i++){
+	for( i = startPos; i < endPos; i++){
+		str1_total = 0;
+		str2_total = 0;
+
 		strcpy(str1, entries[i]);
-		strcpy(str2, entries[i+1]);		
-		
-		for(j = 0; j < LINE_LENGTH; j++){
-			if(j < strlen(str1)){
+		if(i != NUM_ENTRIES - 1)
+			strcpy(str2, entries[i+1]);
+
+		for(j = 0; j <= LINE_LENGTH; j++){
+			if(j <= strlen(str1)){
 				str1_total = str1_total +  (int)str1[j];
 			}
-			if(j< strlen(str2)){
+			if(j <= strlen(str2)){
 				str2_total = str2_total + (int)str2[j];
 			}
 		}
-		
-		final_total = str1_total-str2_total;
-		
-		max_substring[i] = final_total;
+		if(i == NUM_ENTRIES)
+		{
+			final_total = str1_total;
+		}
+		else
+		{		
+			final_total = str1_total - str2_total;
 
+			max_substring[i] = final_total;
+		}
 	}
 }
 
 void print_results(){
 	int i = 0;
 	int total = 0;
-	for ( i = 0; i < NUM_ENTRIES; i++ ) {
+	for ( i = 0; i < NUM_ENTRIES - 1; i++ ) {
 		total += max_substring[i];
 		printf("%d - %d: %d\n", i, i+1, max_substring[i]);
 	}
