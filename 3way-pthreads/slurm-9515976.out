@@ -1,0 +1,1 @@
+/var/spool/slurm/d/job9515976/slurm_script: line 2: 22241 Segmentation fault      ./output $1 $2

@@ -80,7 +80,6 @@ int main(int argc, char* argv[]){
 
 
 int read_file(){
-	
 	FILE *fp;
 	char str1[LINE_LENGTH] = "";
 	fp = fopen("/homes/dan/625/wiki_dump.txt", "r");
@@ -100,60 +99,69 @@ int read_file(){
 
 	read = getline(&line,&len,fp);
 	while(lineNumber < NUM_ENTRIES && read != -1){
-		
-		strncpy(entries[lineNumber], line, LINE_LENGTH-2);
-		
+
+		strncpy(entries[lineNumber], line, LINE_LENGTH);
+
 		lineNumber++;
-		
+
 		read = getline(&line,&len,fp);
-		
+
 	}
-	
-	
 
 	fclose(fp);
 	return 0;
+
 }
 
 
 void get_substring_num(int id){
-	int startPos = id * (NUM_ENTRIES / NUM_THREADS);
+	int startPos = ((int) id) * (NUM_ENTRIES / NUM_THREADS);
 	int endPos = startPos + (NUM_ENTRIES / NUM_THREADS);
-	
+
 	char str1[LINE_LENGTH];
 	char str2[LINE_LENGTH];
-	
-	int str1_total = 0;
-	int str2_total = 0;
-	
+
+	int str1_total;
+	int str2_total;
+
 	int i, j;
 	int final_total;
 
 
 	#pragma omp private(startPos,endPos,str1,str2,str1_total,str2_total,i,j,final_total)
-	for( i = startPos; i < endPos - 1; i++){
+	for( i = startPos; i < endPos; i++){
+		str1_total = 0;
+		str2_total = 0;
+
 		strcpy(str1, entries[i]);
-		strcpy(str2, entries[i+1]);		
-		
-		for(j = 0; j < LINE_LENGTH; j++){
-			if(j < strlen(str1)){
+		if(i != NUM_ENTRIES - 1)
+			strcpy(str2, entries[i+1]);
+
+		for(j = 0; j <= LINE_LENGTH; j++){
+			if(j <= strlen(str1)){
 				str1_total = str1_total +  (int)str1[j];
 			}
-			if(j< strlen(str2)){
+			if(j <= strlen(str2)){
 				str2_total = str2_total + (int)str2[j];
 			}
 		}
-		
-		final_total = str1_total-str2_total;
-		
-		max_substring[i] = final_total;
+		if(i == NUM_ENTRIES)
+		{
+			final_total = str1_total;
+		}
+		else
+		{		
+			final_total = str1_total - str2_total;
+
+			max_substring[i] = final_total;
+		}
 	}
 }
 
 void print_results(){
 	int i = 0;
 	int total = 0;
-	for ( i = 0; i < NUM_ENTRIES; i++ ) {
+	for ( i = 0; i < NUM_ENTRIES - 1; i++ ) {
 		total += max_substring[i];
 		printf("%d - %d: %d\n", i, i+1, max_substring[i]);
 	}
