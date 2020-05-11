@@ -123,7 +123,7 @@ int read_file(){
 	read = getline(&line,&len,fp);
 	while(lineNumber < NUM_ENTRIES && read != -1){
 
-		strncpy(entries[lineNumber], line, LINE_LENGTH-2);
+		strncpy(entries[lineNumber], line, LINE_LENGTH);
 
 		lineNumber++;
 
@@ -142,29 +142,40 @@ void *get_substring_num(void *id){
 	char str1[LINE_LENGTH];
 	char str2[LINE_LENGTH];
 
-	int str1_total = 0;
-	int str2_total = 0;
+	int str1_total;
+	int str2_total;
 
 	int i, j;
 	int final_total;
 
-	for( i = startPos; i < endPos - 1; i++){
-		strcpy(str1, entries[i]);
-		strcpy(str2, entries[i+1]);
+	for( i = startPos; i < endPos; i++){
+		str1_total = 0;
+		str2_total = 0;
 
-		for(j = 0; j < LINE_LENGTH; j++){
-			if(j < strlen(str1)){
+		strcpy(str1, entries[i]);
+		if(i != NUM_ENTRIES - 1)
+			strcpy(str2, entries[i+1]);
+
+		for(j = 0; j <= LINE_LENGTH; j++){
+			if(j <= strlen(str1)){
 				str1_total = str1_total +  (int)str1[j];
 			}
-			if(j< strlen(str2)){
+			if(j <= strlen(str2)){
 				str2_total = str2_total + (int)str2[j];
 			}
 		}
 
-		pthread_mutex_lock(&mutexsum);
-		final_total = str1_total-str2_total;
+                pthread_mutex_lock(&mutexsum);
+		if(i == NUM_ENTRIES)
+		{
+			final_total = str1_total;
+		}
+		else
+		{		
+			final_total = str1_total - str2_total;
 
-		max_substring[i] = final_total;
+			max_substring[i] = final_total;
+		}
 		pthread_mutex_unlock(&mutexsum);
 	}
 	pthread_exit(NULL);
@@ -173,7 +184,7 @@ void *get_substring_num(void *id){
 void print_results(){
 	int i = 0;
 	int total = 0;
-	for ( i = 0; i < NUM_ENTRIES; i++ ) {
+	for ( i = 0; i < NUM_ENTRIES - 1; i++ ) {
 		total += max_substring[i];
 		printf("%d - %d: %d\n", i, i+1, max_substring[i]);
 	}
