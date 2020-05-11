@@ -6,15 +6,15 @@
 #include <mpi.h>
 
 /*constants*/
-#define NUM_ENTRIES 100
 #define LINE_LENGTH 1000
 
-int NUM_THREADS;
+int NUM_ENTRIES = 1000000;
+int NUM_THREADS= 1;
 
 /*all entries in file*/
-char entries[NUM_ENTRIES][LINE_LENGTH];
-int max_substring[NUM_ENTRIES];
-int local_max_substring[NUM_ENTRIES];
+char **entries;
+int *max_substring;
+int *local_max_substring;
 
 int read_file();
 void get_substring_num(int id);
@@ -27,6 +27,7 @@ int main(int argc, char* argv[]){
 	
 	MPI_Status Status;
 	int rc;
+	int i = 0;
 	int numtasks, rank;	
 
 	rc = MPI_Init(&argc, &argv);	
@@ -45,30 +46,30 @@ int main(int argc, char* argv[]){
 	NUM_THREADS = numtasks;
 	printf("size = %d rank = %d\n", numtasks, rank);
 	fflush(stdout);
-	if(rank ==0){
-		if(read_file() != -1){
-			gettimeofday(&readInFile, NULL);		
-			int i;
-			MPI_Bcast(max_substring, NUM_ENTRIES*LINE_LENGTH, MPI_INT, 0, MPI_COMM_WORLD);
-			for(i = 0; i < NUM_THREADS; i++){
-	
-				get_substring_num(i);
-			}
+	if(rank == 0){
+		read_file();
+	}
+	fflush(stdout);
 
-			MPI_Reduce(local_max_substring, max_substring, NUM_ENTRIES*LINE_LENGTH, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
-			print_results();
-			gettimeofday(&finish, NULL);
+	gettimeofday(&readInFile, NULL);		
+	MPI_Bcast(max_substring, NUM_ENTRIES*LINE_LENGTH, MPI_INT, 0, MPI_COMM_WORLD);
+	for(i = 0; i < NUM_THREADS; i++){
 
-			//Print out the timings of for the program
-			timeInterval = ((readInFile.tv_sec - start.tv_sec) * 1000.0) + ((readInFile.tv_usec - start.tv_usec) / 1000.0);
-			printf("\nTiming completed for program using base configuration with %d threads\n", NUM_THREADS);
-			printf("Reading in File: %lf nanoseconds\n", timeInterval); 
-			timeInterval = ((finish.tv_sec - readInFile.tv_sec) * 1000.0) + ((finish.tv_usec - readInFile.tv_usec) / 1000.0);
-			printf("Comparisons of wiki pages: %lf nanoseconds\n", timeInterval);
-			timeInterval = ((finish.tv_sec - start.tv_sec) * 1000.0) + ((finish.tv_usec - start.tv_usec) / 1000.0);
-			printf("Overall time: %lf nanoseconds\n", timeInterval); 
-		}
-	}	
+		get_substring_num(i);
+	}
+
+	MPI_Reduce(local_max_substring, max_substring, NUM_ENTRIES*LINE_LENGTH, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+	print_results();
+	gettimeofday(&finish, NULL);
+
+		//Print out the timings of for the program
+	timeInterval = ((readInFile.tv_sec - start.tv_sec) * 1000.0) + ((readInFile.tv_usec - start.tv_usec) / 1000.0);
+	printf("\nTiming completed for program using base configuration with %d threads\n", NUM_THREADS);
+	printf("Reading in File: %lf nanoseconds\n", timeInterval); 
+	timeInterval = ((finish.tv_sec - readInFile.tv_sec) * 1000.0) + ((finish.tv_usec - readInFile.tv_usec) / 1000.0);
+	printf("Comparisons of wiki pages: %lf nanoseconds\n", timeInterval);
+	timeInterval = ((finish.tv_sec - start.tv_sec) * 1000.0) + ((finish.tv_usec - start.tv_usec) / 1000.0);
+	printf("Overall time: %lf nanoseconds\n", timeInterval); 	
 
 	MPI_Finalize();
 	return 0;
@@ -121,29 +122,36 @@ void get_substring_num(int id){
 
 	
 	for( i = startPos; i < endPos - 1; i++){
-		strcpy(str1, entries[i]);
-		strcpy(str2, entries[i+1]);		
+		str1_total =0;
+		str2_total = 0;
 		
-		for(j = 0; j < LINE_LENGTH; j++){
-			if(j < strlen(str1)){
+		strcpy(str1, entries[i]);
+		if(i != NUM_ENTRIES - 1)
+			strcpy(str2, entries[i+1]);		
+		
+		for(j = 0; j <= LINE_LENGTH; j++){
+			if(j <= strlen(str1)){
 				str1_total = str1_total +  (int)str1[j];
 			}
-			if(j< strlen(str2)){
+			if(j <= strlen(str2)){
 				str2_total = str2_total + (int)str2[j];
 			}
 		}
+		if(i == NUM_ENTRIES){
+			final_total = str1_total;
+		}
+		else{
+			final_total = str1_total-str2_total;
 		
-		final_total = str1_total-str2_total;
-		
-		max_substring[i] = final_total;
-
+			max_substring[i] = final_total;
+		}
 	}
 } 
 
 void print_results(){
 	int i = 0;
 	int total = 0;
-	for ( i = 0; i < NUM_ENTRIES; i++ ) {
+	for ( i = 0; i < NUM_ENTRIES-1; i++ ) {
 		total += max_substring[i];
 		printf("%d - %d: %d\n", i, i+1, max_substring[i]);
 	}
