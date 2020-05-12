@@ -6,28 +6,27 @@
 #include <mpi.h>
 
 /*constants*/
-#define LINE_LENGTH 1000
-
-int NUM_ENTRIES = 1000000;
-int NUM_THREADS= 1;
+#define LINE_LENGTH 2003
+#define NUM_ENTRIES 1000000
+int NUM_THREADS;
 
 /*all entries in file*/
-char **entries;
-int *max_substring;
-int *local_max_substring;
+char entries[NUM_ENTRIES][LINE_LENGTH];
+int max_substring[NUM_ENTRIES];
+int local_max_substring[NUM_ENTRIES];
+
 
 int read_file();
 void get_substring_num(int id);
 void print_results();
 
 int main(int argc, char* argv[]){
-	//Starting the program so we need to see the current time
+	/*Starting the program so we need to see the current time*/
 	struct timeval start, readInFile, finish;
 	double timeInterval;
 	
 	MPI_Status Status;
 	int rc;
-	int i = 0;
 	int numtasks, rank;	
 
 	rc = MPI_Init(&argc, &argv);	
@@ -35,34 +34,39 @@ int main(int argc, char* argv[]){
 	if(rc != MPI_SUCCESS)
 	{
 		printf ("Error starting MPI program. Terminating.\n");
-        	MPI_Abort(MPI_COMM_WORLD, rc);
+        MPI_Abort(MPI_COMM_WORLD, rc);
 	}
 
-	gettimeofday(&start, NULL);
+	/*gettimeofday(&start, NULL);*/
 	
 	MPI_Comm_size(MPI_COMM_WORLD,&numtasks);
 	MPI_Comm_rank(MPI_COMM_WORLD,&rank);
-
+	
 	NUM_THREADS = numtasks;
-	printf("size = %d rank = %d\n", numtasks, rank);
+
 	fflush(stdout);
+	
+	/*printf("size = %d rank = %d\n", numtasks, rank);*/
+	
 	if(rank == 0){
+		
 		read_file();
 	}
+	
 	fflush(stdout);
 
+	
+	
 	gettimeofday(&readInFile, NULL);		
-	MPI_Bcast(max_substring, NUM_ENTRIES*LINE_LENGTH, MPI_INT, 0, MPI_COMM_WORLD);
-	for(i = 0; i < NUM_THREADS; i++){
+	MPI_Bcast(entries, NUM_ENTRIES*LINE_LENGTH, MPI_CHAR, 0, MPI_COMM_WORLD);
+	
+	get_substring_num(rank);
 
-		get_substring_num(i);
-	}
-
-	MPI_Reduce(local_max_substring, max_substring, NUM_ENTRIES*LINE_LENGTH, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+	/*MPI_Reduce(local_max_substring, max_substring, NUM_ENTRIES*LINE_LENGTH, MPI_CHAR, MPI_SUM, 0, MPI_COMM_WORLD);*/
 	print_results();
 	gettimeofday(&finish, NULL);
 
-		//Print out the timings of for the program
+	/*Print out the timings of for the program*/
 	timeInterval = ((readInFile.tv_sec - start.tv_sec) * 1000.0) + ((readInFile.tv_usec - start.tv_usec) / 1000.0);
 	printf("\nTiming completed for program using base configuration with %d threads\n", NUM_THREADS);
 	printf("Reading in File: %lf nanoseconds\n", timeInterval); 
@@ -79,9 +83,8 @@ int main(int argc, char* argv[]){
 int read_file(){
 	
 	FILE *fp;
-	char str1[LINE_LENGTH] = "";
 	fp = fopen("/homes/dan/625/wiki_dump.txt", "r");
-	//fp = fopen("/homes/nwporsch/CIS520-Project-4/smallwiki.txt","r");
+	/*fp = fopen("/homes/nwporsch/CIS520-Project-4/smallwiki.txt","r");*/
 	if(fp == NULL) {
 		perror("Failed: ");
 		return -1;
