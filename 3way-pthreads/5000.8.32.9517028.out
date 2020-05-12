@@ -1,0 +1,1 @@
+/var/spool/slurm/d/job9517028/slurm_script: line 2: 27194 Segmentation fault      (core dumped) ./output $1 $2
