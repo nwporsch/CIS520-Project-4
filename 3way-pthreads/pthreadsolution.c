@@ -17,7 +17,7 @@ char **entries;
 int *max_substring;
 
 int read_file();
-void *get_substring_num(void* id);
+void* get_substring_num(void* id);
 void print_results();
 
 int main(int argc, char* argv[]){
@@ -37,7 +37,6 @@ int main(int argc, char* argv[]){
 
 	//See if arguments were passed
 	if(argc == 3){
-		pthread_mutex_init(&mutexsum, NULL);
 
 		NUM_ENTRIES = strtol(argv[1], NULL, 10);
 		NUM_THREADS = strtol(argv[2], NULL, 10);
@@ -103,6 +102,8 @@ int main(int argc, char* argv[]){
 }
 
 int read_file(){
+	pthread_mutex_init(&mutexsum, NULL);
+
 	FILE *fp;
 	char str1[LINE_LENGTH] = "";
 	fp = fopen("/homes/dan/625/wiki_dump.txt", "r");
@@ -135,7 +136,7 @@ int read_file(){
 	return 0;
 }
 
-void *get_substring_num(void *id){
+void* get_substring_num(void* id){
 	int startPos = ((int) id) * (NUM_ENTRIES / NUM_THREADS);
 	int endPos = startPos + (NUM_ENTRIES / NUM_THREADS);
 
