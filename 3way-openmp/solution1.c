@@ -128,7 +128,7 @@ void get_substring_num(int id){
 	int final_total;
 
 
-	#pragma omp private(startPos,endPos,str1,str2,str1_total,str2_total,i,j,final_total)
+	//#pragma omp private(startPos,endPos,str1,str2,str1_total,str2_total,i,j,final_total)
 	for( i = startPos; i < endPos; i++){
 		str1_total = 0;
 		str2_total = 0;
